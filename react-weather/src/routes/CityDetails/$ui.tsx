@@ -2,7 +2,7 @@ import { useLocation, useParams } from "react-router-dom";
 import "./styles.css";
 import { CityWether } from "../../components/CitiesList/components/CityWether";
 import ErrorPage from "../ErrorPage";
-import SvgImage from "../../components/SvgImage/$ui";
+import SvgFlagImage from "../../components/SvgImage/$ui";
 
 export default function CityDetails() {
   const location = useLocation();
