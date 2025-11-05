@@ -1,0 +1,9 @@
+.cities-list-container {
+    height: calc(100% - 89px);
+    overflow: auto;
+
+    .cities-list {
+        display: flex;
+        flex-direction: column;
+    }
+}

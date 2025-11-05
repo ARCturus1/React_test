@@ -1,0 +1,12 @@
+.feedback-page-container {
+  padding: 24px;
+  height: 100%;
+  min-height: 280px;
+  overflow: auto;
+}
+
+.feedback-page-container h1 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #1677ff;
+}

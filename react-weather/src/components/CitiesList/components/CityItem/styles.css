@@ -1,0 +1,11 @@
+.city-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+
+    .city-name,
+    .country-name {
+        width: 200px;
+    }
+}

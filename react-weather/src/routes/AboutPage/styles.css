@@ -1,0 +1,50 @@
+.about-page-container {
+  padding: 24px;
+  height: 100%;
+  min-height: 280px;
+  overflow: auto;
+}
+
+.about-page-container h1 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #1677ff;
+}
+
+/* Ensure h1 has the same blue color as selected menu items in light mode */
+/* @media (prefers-color-scheme: light) {
+  .about-page-container h1 {
+    color: #1677ff;
+  }
+} */
+
+/* For dark mode, we might want to adjust the color for better contrast if needed */
+/* @media (prefers-color-scheme: dark) {
+  .about-page-container h1 {
+    color: #1677ff;
+  }
+} */
+
+.about-page-container h2 {
+  font-size: 1.5rem;
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: var(--ant-primary-color-hover);
+}
+
+.about-page-container p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  color: var(--ant-text-color);
+}
+
+.about-page-container ul {
+  margin-left: 20px;
+  margin-bottom: 16px;
+}
+
+.about-page-container li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
