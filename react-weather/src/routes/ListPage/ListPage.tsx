@@ -6,7 +6,7 @@ import "./styles.css";
 import { Empty } from "antd";
 import { useDebounce } from "../../hooks/debounce";
 import { useThemeContext } from "../../contexts/ThemeContext";
-import Spiner from "../../shared/components/spiner";
+import Spiner from "../../shared/components/Spiner";
 import { citiesListBySearchText } from "../../api/city.api";
 
 export function ListPage() {

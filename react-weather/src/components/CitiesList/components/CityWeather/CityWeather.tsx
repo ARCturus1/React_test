@@ -1,16 +1,17 @@
-import { getWhetherUrlByLocation } from "../../../../api/whether.api";
+import { getWeatherUrlByLocation } from "../../../../api/weather.api";
 import {
   getIconForWeatherCode,
-  getWhetherDescriptionByData,
-} from "../../../../utils/wetherCodes";
+  getWeatherDescriptionByData,
+} from "../../../../utils/weatherCodes";
 import { useFetch } from "../../../../hooks/fetch";
 import getWindDirection from "../../../../utils/windDirection";
-import SvgImage from "../../../SvgImage";
-import WetherDataItem from "../../../WhetherDataItem";
+import SvgFlagImage from "../../../SvgFlagImage";
+import WeatherDataItem from "../../../WeatherDataItem";
 import type { CityWheterModel } from "./model";
 import "./styles.css";
+import Spiner from "../../../../shared/components/Spiner";
 
-export function CityWether({
+export function CityWeather({
   location,
   cityName,
   countryCode,
@@ -19,7 +20,11 @@ export function CityWether({
     data: weatherData,
     error,
     loading,
-  } = useFetch([], getWhetherUrlByLocation(location));
+  } = useFetch([], getWeatherUrlByLocation(location));
+
+  if (error) {
+    throw new Error(error);
+  }
 
   const timeConvert = (data: string) => {
     return new Date(data).toLocaleDateString();
@@ -32,13 +37,18 @@ export function CityWether({
   return (
     <>
       {weatherData ? (
-        <div className="max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 flex items-center space-x-4 text-gray-900 dark:text-gray-100">
+        <div className="weather-data max-w-sm mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 flex items-center space-x-4 text-gray-900 dark:text-gray-100">
           <div className="text-5xl">
             {getIconForWeatherCode(weatherData.current.weather_code)}
           </div>
           <div>
+            {weatherData.current.time && (
+              <p className="text-xl font-semibold pb-1.5">
+                {timeConvert(weatherData.current.time)}
+              </p>
+            )}
             {countryCode && (
-              <SvgImage
+              <SvgFlagImage
                 countryCode={countryCode}
                 className="text-3xl flex-shrink-0"
               />
@@ -46,7 +56,7 @@ export function CityWether({
             {cityName && <h2 className="text-xl font-semibold">{cityName}</h2>}
             <p className="text-3xl font-bold"></p>
             <p className="text-gray-600 dark:text-gray-300">
-              {getWhetherDescriptionByData(weatherData.current.weather_code)}
+              {getWeatherDescriptionByData(weatherData.current.weather_code)}
             </p>
             {temperatureView(
               weatherData.current.temperature_2m,
@@ -62,6 +72,8 @@ export function CityWether({
             </div>
           </div>
         </div>
+      ) : loading ? (
+        <Spiner />
       ) : null}
     </>
 

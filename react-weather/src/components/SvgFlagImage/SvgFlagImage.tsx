@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import * as flags from "country-flag-icons/string/3x2";
 import "./styles.css";
 
-export default function SvgFlagImage({
+export function SvgFlagImage({
   countryCode,
   className,
 }: {

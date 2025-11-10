@@ -1,5 +1,5 @@
-export function getWhetherDescriptionByData(whetherCode: number): string {
-    switch (whetherCode) {
+export function getWeatherDescriptionByData(weatherCode: number): string {
+    switch (weatherCode) {
         case 0: return 'Clear sky';
         case 1: return 'Mainly clear';
         case 2: return 'partly cloudy';
@@ -47,10 +47,10 @@ export function getWhetherDescriptionByData(whetherCode: number): string {
 
 /**
  * Returns the weather icon emoji for a given code.
- * @param whetherCode The numeric code representing the weather condition.
+ * @param weatherCode The numeric code representing the weather condition.
  * @returns The corresponding emoji or a default emoji if no match is found.
  */
-export function getIconForWeatherCode(whetherCode: number): string {
+export function getIconForWeatherCode(weatherCode: number): string {
     const iconMap = {
         0: '☀️',
         1: '⛅',
@@ -85,5 +85,5 @@ export function getIconForWeatherCode(whetherCode: number): string {
         default: '❓',
     } as { [key: number | string]: string }; // Type assertion to treat iconMap as a dictionary with number keys
 
-    return iconMap[whetherCode] || iconMap['default'];
+    return iconMap[weatherCode] || iconMap['default'];
 }

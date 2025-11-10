@@ -5,17 +5,19 @@ import { useEffect } from "react";
 
 const root = document.getElementById('root');
 
-export default function ThemeToggle() {
+export function ThemeToggle() {
   const { theme, setTheme } = useThemeContext();
 
   useEffect(() => {
-    root?.classList.add(theme === "dark" ? "dark-mode" : "light-mode");
+    root?.classList.add(theme === "dark" ? "dark" : "light")
+    root?.setAttribute('data-theme', theme === "dark" ? "dark" : "light");
   }, []);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
-    root?.classList.remove('dark-mode', 'light-mode');
-    root?.classList.add(theme === "dark" ? "light-mode" : "dark-mode");
+    root?.classList.remove('dark', 'light');
+    root?.classList.add(theme === "dark" ? "light" : "dark");
+    root?.setAttribute('data-theme', theme === "dark" ? "light" : "dark");
   };
 
   return (

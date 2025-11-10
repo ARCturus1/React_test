@@ -1,3 +1,1 @@
-import ui from './$ui';
-
-export default ui;
+export {Header as default} from './Header';

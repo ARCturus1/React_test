@@ -1,3 +1,1 @@
-import ListPage from "./$ui";
-
-export default ListPage;
+export { ListPage as default } from "./ListPage";

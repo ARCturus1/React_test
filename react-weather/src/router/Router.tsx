@@ -17,17 +17,22 @@ const router = createBrowserRouter([
       },
       {
         path: "list",
-        lazy: async () => ({
-          Component: (await import("../routes/ListPage")).default,
-          errorElement: <ErrorPage />,
-        }),
-      },
-      {
-        path: "city/:id",
-        lazy: async () => ({
-          Component: (await import("../routes/CityDetails")).default,
-          errorElement: <ErrorPage />,
-        }),
+        children: [
+          {
+            path: "",
+            lazy: async () => ({
+              Component: (await import("../routes/ListPage")).default,
+              errorElement: <ErrorPage />,
+            }),
+          },
+          {
+            path: ":id",
+            lazy: async () => ({
+              Component: (await import("../routes/CityDetails")).default,
+              errorElement: <ErrorPage />,
+            }),
+          },
+        ],
       },
       {
         path: "about",

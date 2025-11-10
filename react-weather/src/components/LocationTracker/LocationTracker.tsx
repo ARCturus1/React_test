@@ -2,7 +2,7 @@ import { useState, useEffect, type PropsWithChildren } from "react";
 import type { LocationModel } from "../../models/LocationModel";
 import { LocationContext } from "../../contexts/LocationContext";
 
-export default function LocationTracker(props: PropsWithChildren) {
+export function LocationTracker(props: PropsWithChildren) {
   const [location, setLocation] = useState<LocationModel | null>(null);
   const [error, setError] = useState<string | null>(null);
 

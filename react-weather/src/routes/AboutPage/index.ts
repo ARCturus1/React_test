@@ -1,3 +1,1 @@
-import AboutPage from "./$ui";
-
-export default AboutPage;
+export { AboutPage as default } from "./AboutPage";

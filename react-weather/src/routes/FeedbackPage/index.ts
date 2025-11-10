@@ -1,3 +1,1 @@
-import FeedbackPage from "./$ui";
-
-export default FeedbackPage;
+export { FeedbackPage as default } from "./FeedbackPage";

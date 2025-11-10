@@ -1,6 +1,6 @@
 import './styles.css';
 
-export default function WetherDataItem(props: {
+export function WetherDataItem(props: {
   value?: string;
   title?: string;
   unit?: string;

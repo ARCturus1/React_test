@@ -5,9 +5,11 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 import { useThemeContext } from "../../contexts/ThemeContext";
 import LocationTracker from "../../components/LocationTracker";
+import { Suspense } from "react";
+import Spiner from "../../shared/components/Spiner";
 
 interface ThemeContext {
-  theme: 'dark' | 'light';
+  theme: "dark" | "light";
   tokens?: { [key: string]: string };
 }
 
@@ -54,18 +56,21 @@ export function RootPage() {
     token: { borderRadiusLG },
   } = theme.useToken();
   const location = useLocation();
+
   const defaultKey =
-    menuItems.find((i) => i.path === location.pathname)?.key || "main";
+    menuItems
+      .slice(1)
+      .find((i) => new RegExp(i.path, "gm").test(location.pathname))?.key ||
+    "main";
 
   const curThemeObject = useThemeContext() as ThemeContext;
   const curTheme = curThemeObject?.theme || "dark";
 
-  const algorithm = curTheme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm;
+  const algorithm =
+    curTheme === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm;
 
   return (
-    <ConfigProvider
-      theme={{ algorithm }}
-    >
+    <ConfigProvider theme={{ algorithm }}>
       <Layout>
         <Sider theme={curTheme}>
           <Menu
@@ -91,7 +96,9 @@ export function RootPage() {
             }}
           >
             <LocationTracker>
-              <Outlet />
+              <Suspense fallback={<Spiner />}>
+                <Outlet />
+              </Suspense>
             </LocationTracker>
           </Content>
         </Layout>

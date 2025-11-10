@@ -3,7 +3,7 @@ import CityItem from "./components/CityItem";
 import "./styles.css";
 import { List } from "antd";
 
-export default function CitiesList({
+export function CitiesList({
   cities,
   diffHeight = '0',
 }: {

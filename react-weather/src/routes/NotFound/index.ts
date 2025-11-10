@@ -1,3 +1,1 @@
-import ui from "./$ui";
-
-export default ui;
+export { NotFound as default } from "./NotFound";

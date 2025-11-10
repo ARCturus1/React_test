@@ -1,3 +1,1 @@
-import CityDetails from "./$ui";
-
-export default CityDetails;
+export { CityDetails as default } from "./CityDetails";
