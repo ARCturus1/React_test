@@ -4,7 +4,7 @@ import { useFetch } from "../../hooks/fetch";
 import CitiesList from "../../components/CitiesList";
 import "./styles.css";
 import { Empty } from "antd";
-import { useDebounce } from "../../hooks/debounce";
+// import { useDebounce } from "../../hooks/debounce";
 import { useThemeContext } from "../../contexts/ThemeContext";
 import Spiner from "../../shared/components/Spiner";
 import { citiesListBySearchText } from "../../api/city.api";
@@ -23,7 +23,7 @@ export function ListPage() {
   const [searchValue, setSearchValue] = useState<string | undefined>(
     searchParams.get("searchValue") || undefined
   );
-  const searchInputRef = useRef<any>(null);
+
   const [diffHeight, setDiffHeight] = useState<string | undefined>(undefined);
   const searchAndOtherElContainer = useRef<HTMLDivElement>(null);
   // const handleSearchDebounced = useDebounce(setSearchValue, 300);
@@ -88,7 +88,6 @@ export function ListPage() {
             enterButton
             value={searchValue ? searchValue : undefined}
             onChange={handleChange}
-            ref={searchInputRef}
           />
           <Divider />
         </div>
