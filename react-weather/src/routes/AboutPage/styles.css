@@ -8,22 +8,8 @@
 .about-page-container h1 {
   font-size: 2rem;
   margin-bottom: 16px;
-  color: #1677ff;
 }
 
-/* Ensure h1 has the same blue color as selected menu items in light mode */
-/* @media (prefers-color-scheme: light) {
-  .about-page-container h1 {
-    color: #1677ff;
-  }
-} */
-
-/* For dark mode, we might want to adjust the color for better contrast if needed */
-/* @media (prefers-color-scheme: dark) {
-  .about-page-container h1 {
-    color: #1677ff;
-  }
-} */
 
 .about-page-container h2 {
   font-size: 1.5rem;

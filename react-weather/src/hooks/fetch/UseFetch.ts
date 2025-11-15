@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
-export function useFetch(
+export function useFetch<T extends object>(
     dependencies: any[],
     url: string | null | undefined,
     params: RequestInit = { method: 'GET', body: undefined },
     onSuccess?: (data: any) => void,
     onError?: (error: string) => void
 ) {
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<T | undefined>(undefined);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
 

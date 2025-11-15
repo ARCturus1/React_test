@@ -1,3 +1,8 @@
+/**
+ * Returns a human-readable description for a given weather code.
+ * @param weatherCode The numeric code representing the weather condition.
+ * @returns A descriptive string for the weather condition, or an empty string if no match is found.
+ */
 export function getWeatherDescriptionByData(weatherCode: number): string {
     switch (weatherCode) {
         case 0: return 'Clear sky';

@@ -1,73 +1,90 @@
-# React + TypeScript + Vite
+# React Weather App — TypeScript + Vite + Tailwind
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a modern React application using TypeScript, Vite, Tailwind CSS, and ESLint. It is designed to display weather data for cities using an external API.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React + TypeScript** — Typed code for better support and debugging.
+- **Vite** — Fast development and build.
+- **Tailwind CSS** — Styling via utility classes.
+- **ESLint** — Static analysis with TypeScript support.
+- **React Hooks** — `useFetch`, `useDebounce`, `useThemeContext`.
+- **Context API** — Theme and location management.
+- **Weather API** — Integration with external API for weather data.
+- **Routing** — React Router for navigation.
+- **Error Boundaries** — Error handling in components.
+- **Theme Toggle** — Light/dark theme switching.
+- **Cities List** — List of cities with weather.
+- **City Details** — Detailed weather information for a city.
+- **Error & NotFound Pages** — Error and not-found page handling.
+- **Feedback Page** — Feedback form page.
 
-## React Compiler
+## Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ARCturus1/React_test
+   cd react-weather
+   ```
 
-## Expanding the ESLint configuration
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. Run the application:
+   ```bash
+   npm run dev
+   ```
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+react-weather/
+├── src/
+│   ├── api/          # API services
+│   ├── components/   # Components
+│   ├── contexts/     # Contexts
+│   ├── hooks/        # Hooks
+│   ├── models/       # Models
+│   ├── routes/       # Routes
+│   ├── utils/        # Utilities
+│   ├── enums/        # Constants
+│   ├── styles/       # Styles
+│   └── index.tsx     # Main component
+├── public/
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── eslint.config.js
+└── README.md
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Running
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+## Testing
+
+Tests are not yet implemented, but it is recommended to add them using `@testing-library/react` and `jest`.
+
+## Development
+
+- Add new components.
+- Improve data fetching logic.
+- Add tests.
+- Add documentation.
+- Add `package.json` and `tsconfig.json`.
+- Add `gitignore`.
+- Add `README.md` to `public/`, `src/`, or `dist/`.
+
+## License
+
+MIT
+
+## Author
+
+Roman Savchenko
+

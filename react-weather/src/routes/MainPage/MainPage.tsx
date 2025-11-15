@@ -1,4 +1,3 @@
-
 import { cityByCoords } from "../../api/city.api";
 import { API } from "../../api/keys";
 import CityWeather from "../../components/CitiesList/components/CityWeather";
@@ -7,11 +6,14 @@ import { useFetch } from "../../hooks/fetch";
 import NotFound from "../NotFound";
 import "./styles.css";
 import Spiner from "../../shared/components/Spiner";
+import type { CityData } from "../../models/CityWeatherData";
 
 export function MainPage() {
+  // Get user's current location for weather data
   const location = useLocationContext();
 
-  const { data, error, loading } = useFetch(
+  // Fetch weather data using user's coordinates from city.api
+  const { data, error, loading } = useFetch<CityData[]>(
     [location?.latitude, location?.longitude],
     cityByCoords(location!),
     {

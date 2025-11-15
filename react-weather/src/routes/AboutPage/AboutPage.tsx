@@ -1,9 +1,14 @@
 import "./styles.css";
 
+/**
+ * Renders the "About" page for the Weather App.
+ * Displays information about the application, its features, and the technology stack used.
+ * @returns {JSX.Element} The rendered AboutPage component.
+ */
 export function AboutPage() {
   return (
     <div className="about-page-container">
-      <h1>Weather App</h1>
+      <h1 className="text-blue-400 dark:text-amber-500">Weather App</h1>
       <p>Welcome to the Weather App - your reliable source for current weather information.</p>
       <h2>About This Application</h2>
       <p>This application provides real-time weather data for cities around the world. It uses the Open-Meteo API to fetch accurate weather information including temperature, wind speed, and weather conditions.</p>
@@ -27,5 +32,3 @@ export function AboutPage() {
     </div>
   );
 }
-
-export default AboutPage;

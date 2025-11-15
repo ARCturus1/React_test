@@ -6,30 +6,55 @@ import {
 import { useFetch } from "../../../../hooks/fetch";
 import getWindDirection from "../../../../utils/windDirection";
 import SvgFlagImage from "../../../SvgFlagImage";
-import WeatherDataItem from "../../../WeatherDataItem";
-import type { CityWheterModel } from "./model";
+import type { CityWeatherModel, WeatherDataModel } from "./model";
 import "./styles.css";
 import Spiner from "../../../../shared/components/Spiner";
 
+/**
+ * Component to display weather data for a specific city.
+ * @param location - The location for which to fetch weather data.
+ * @param cityName - The name of the city.
+ * @param countryCode - The country code for the city.
+ * @returns JSX element displaying weather data.
+ */
 export function CityWeather({
   location,
   cityName,
   countryCode,
-}: CityWheterModel) {
+}: CityWeatherModel) {
+  /**
+   * Fetches weather data for the given location.
+   * @returns Object containing weather data, error, and loading state.
+   */
   const {
     data: weatherData,
     error,
     loading,
-  } = useFetch([], getWeatherUrlByLocation(location));
+  } = useFetch<WeatherDataModel>([], getWeatherUrlByLocation(location));
 
+  /**
+   * Handles errors by throwing an error with the error message.
+   * @param error - The error message.
+   */
   if (error) {
     throw new Error(error);
   }
 
+  /**
+   * Converts a timestamp to a human-readable date string.
+   * @param data - The timestamp to convert.
+   * @returns Human-readable date string.
+   */
   const timeConvert = (data: string) => {
     return new Date(data).toLocaleDateString();
   };
 
+  /**
+   * Formats temperature with a plus sign if positive.
+   * @param temperature - The temperature value.
+   * @param unit - The unit of temperature.
+   * @returns Formatted temperature string.
+   */
   const temperatureView = (temperature: number, unit: string) => {
     return (temperature > 0 ? "+" : "") + `${temperature} ${unit}`;
   };
@@ -62,60 +87,31 @@ export function CityWeather({
               weatherData.current.temperature_2m,
               weatherData.current_units.temperature_2m
             )}
-            <div className="mt-2 flex items-center text-sm">
-              <span className="mr-2">💨</span>
-              <span>
-                {getWindDirection(weatherData.current.wind_direction_10m)},{" "}
-                {weatherData.current.wind_speed_10m}{" "}
-                {weatherData.current_units.wind_speed_10m}
-              </span>
-            </div>
+            {weatherData.current.wind_direction_10m && (
+              <>
+                <div className="mt-2 flex items-center text-sm">
+                  <span className="mr-2">💨</span>
+                  <span>
+                    {getWindDirection(weatherData.current.wind_direction_10m)},{" "}
+                    {weatherData.current.wind_speed_10m}{" "}
+                    {weatherData.current_units.wind_speed_10m}
+                  </span>
+                </div>
+                <div className="mt-2 flex items-center text-sm">
+                  <span className="mr-2">🌪️</span>
+                  <span>
+                    {getWindDirection(weatherData.current.wind_direction_10m)},{" "}
+                    {weatherData.current.wind_gusts_10m}{" "}
+                    {weatherData.current_units.wind_gusts_10m}
+                  </span>
+                </div>
+              </>
+            )}
           </div>
         </div>
       ) : loading ? (
         <Spiner />
       ) : null}
     </>
-
-    // <>
-    //   {weatherData ? (
-    //     <div className="current-weather-container">
-    //       <WhetherDataItem
-    //         title={getWhetherDescriptionByData(
-    //           weatherData.current.weather_code
-    //         )}
-    //       />
-
-    //       <WhetherDataItem
-    //         title="Time"
-    //         value={timeConvert(weatherData.current.time)}
-    //       />
-
-    //       <WhetherDataItem
-    //         title="Wind Speed"
-    //         value={weatherData.current.wind_speed_10m}
-    //         unit={weatherData.current_units.wind_speed_10m}
-    //       />
-
-    //       <WhetherDataItem
-    //         title="Wind Direction"
-    //         value={weatherData.current.wind_direction_10m}
-    //         unit={weatherData.current_units.wind_direction_10m}
-    //       />
-
-    //       <WhetherDataItem
-    //         title="Wind Gusts"
-    //         value={weatherData.current.wind_gusts_10m}
-    //         unit={weatherData.current_units.wind_gusts_10m}
-    //       />
-
-    //       <WhetherDataItem
-    //         title="Temperature"
-    //         value={weatherData.current.temperature_2m}
-    //         unit={weatherData.current_units.temperature_2m}
-    //       />
-    //     </div>
-    //   ) : null}
-    // </>
   );
 }

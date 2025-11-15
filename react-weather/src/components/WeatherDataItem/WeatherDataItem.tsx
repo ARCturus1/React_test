@@ -1,6 +1,6 @@
 import './styles.css';
 
-export function WetherDataItem(props: {
+export function WeatherDataItem(props: {
   value?: string;
   title?: string;
   unit?: string;

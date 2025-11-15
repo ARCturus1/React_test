@@ -1,38 +1,31 @@
 import "./styles.css";
 import { useActionState } from "react";
 import TextArea from "antd/lib/input/TextArea";
-import { useFormStatus } from "react-dom";
-import { useThemeContext } from '../../contexts/ThemeContext';
+import SubmitButton from "../../shared/components/SubmitButton";
 
-function SubmitButton({ text }: { text: string }) {
-  const formStatus = useFormStatus();
-
-  if (!formStatus) { return null; }
-
-  return (
-    <button type="submit" disabled={formStatus.pending}>
-      {formStatus.pending ? 'Loading...' : text}
-    </button>
-  );
-}
-
+/**
+ * Component for collecting user feedback.
+ * Uses `useActionState` to submit data to the backend via form action.
+ */
 export function FeedbackPage() {
-  // const { theme } = useThemeContext(); // Get the current theme from context
-
-  const [state, actionHandler] = useActionState((prev: any, form: any) => {
+  const [, actionHandler] = useActionState((_: FormData, form: FormData) => {
     const data = Object.fromEntries(form.entries());
+    // Here you can send data to the backend
     return form;
-  }, {});
+  }, new FormData());
 
   return (
     <div className="feedback-page-container">
-      <h1>Feedback</h1>
+      <h1 className="text-blue-400 dark:text-amber-500">Feedback</h1>
       <form action={actionHandler} className="flex flex-col items-end gap-y-3">
-          <TextArea rows={4}  placeholder="Please, fill feedback" variant="outlined" />
+        <TextArea
+          name="feedback"
+          rows={4}
+          placeholder="Please, fill feedback"
+          variant="outlined"
+        />
         <SubmitButton text="Submit" />
       </form>
     </div>
   );
 }
-
-export default FeedbackPage;

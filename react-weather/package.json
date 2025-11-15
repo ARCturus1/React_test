@@ -12,6 +12,7 @@
   "dependencies": {
     "@ant-design/compatible": "^5.1.4",
     "@ant-design/pro-layout": "^7.22.7",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@tailwindcss/vite": "^4.1.14",
     "antd": "^5.27.4",
     "country-flag-icons": "^1.5.21",
