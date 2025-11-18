@@ -1,12 +1,19 @@
 import { Button } from "antd";
 import { useFormStatus } from "react-dom";
+import type { SubmitButtonProps } from "./types";
 
-export type SubmitButtonProps = {
-  text: string;
-  loadingText?: string;
-};
-
-export function SubmitButton({ text, loadingText = "Loading..." }: SubmitButtonProps) {
+/**
+ * SubmitButton component for form submission with loading state handling.
+ *
+ * This component manages form submission with automatic loading state handling
+ * using React's useFormStatus hook.
+ */
+export function SubmitButton({
+  text,
+  loadingText = "Loading...",
+  children,
+  ...props
+}: SubmitButtonProps) {
   const formStatus = useFormStatus();
 
   if (!formStatus) {
@@ -19,8 +26,9 @@ export function SubmitButton({ text, loadingText = "Loading..." }: SubmitButtonP
       disabled={formStatus.pending}
       color="primary"
       variant="solid"
+      {...props}
     >
-      {formStatus.pending ? loadingText : text}
+      {formStatus.pending ? loadingText : children || text}
     </Button>
   );
 }

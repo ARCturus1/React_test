@@ -1,99 +1,88 @@
+import type { MenuItem } from "./types";
 import { ConfigProvider, Layout, Menu, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import { Link, Outlet, useLocation } from "react-router-dom";
-
 import { useThemeContext } from "../../contexts/ThemeContext";
 import LocationTracker from "../../components/LocationTracker";
 import { Suspense } from "react";
 import Spiner from "../../shared/components/Spiner";
+import { HomeOutlined, UnorderedListOutlined, InfoCircleOutlined, MessageOutlined } from "@ant-design/icons";
 
-interface ThemeContext {
-  theme: "dark" | "light";
-  tokens?: { [key: string]: string };
-}
-
-type MenuItem = {
-  path: string;
-  label: React.ReactNode;
-  icon?: React.ReactNode;
-  key: string;
-};
-
+/**
+ * Array of menu items for the application navigation
+ */
 const menuItems: MenuItem[] = [
   {
     key: "main",
-    //icon: <UserOutlined />,
     label: "Main",
     path: "/",
+    icon: <HomeOutlined />,
   },
   {
     key: "list",
-    //icon: <VideoCameraOutlined />,
     label: "List",
     path: "/list",
+    icon: <UnorderedListOutlined />,
   },
   {
     key: "about",
-    //icon: <UserOutlined />,
     label: "About",
     path: "/about",
+    icon: <InfoCircleOutlined />,
   },
   {
     key: "feedback",
-    //icon: <UserOutlined />,
     label: "Feedback",
     path: "/feedback",
+    icon: <MessageOutlined />,
   },
 ];
 
 /**
  * RootPage component for the application layout. Handles theme and menu selection.
+ * This component provides the main layout structure with sidebar navigation and content area.
+ * It uses React Router for navigation and Ant Design components for UI.
  */
-
 export function RootPage() {
   const {
     token: { borderRadiusLG },
   } = theme.useToken();
   const location = useLocation();
 
+  // Determine the default selected menu item based on current route
   const defaultKey =
     menuItems
       .slice(1)
-      .find((i) => new RegExp(i.path, "gm").test(location.pathname))?.key ||
-    "main";
+      .find((item) => new RegExp(item.path, "gm").test(location.pathname))
+      ?.key ?? "main";
 
-  const curThemeObject = useThemeContext() as ThemeContext;
-  const curTheme = curThemeObject?.theme || "dark";
+  // Get current theme context
+  const { theme: curTheme } = useThemeContext();
 
+  // Set the appropriate theme algorithm based on current theme
   const algorithm =
     curTheme === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm;
 
   return (
     <ConfigProvider theme={{ algorithm }}>
       <Layout>
-        <Sider theme={curTheme}>
+        <Sider theme={curTheme as "dark" | "light"}>
           <Menu
-            theme={curTheme}
+            theme={curTheme as "dark" | "light"}
             mode="inline"
             className="menu"
             defaultSelectedKeys={[defaultKey]}
-            items={[
-              ...menuItems.map((item) => ({
-                ...item,
-                label: <Link to={item.path}>{item.label}</Link>,
-              })),
-            ]}
+            items={menuItems.map((item) => ({
+              ...item,
+              label: <Link to={item.path}>{item.label}</Link>,
+            }))}
           />
         </Sider>
         <Layout>
           <Content
-            style={{
-              margin: "16px",
-              padding: 24,
-              minHeight: 280,
-              borderRadius: borderRadiusLG,
-            }}
+            className="p-6 m-4 min-h-[280px] rounded-lg"
+            style={{ borderRadius: borderRadiusLG }}
           >
             <LocationTracker>
               <Suspense fallback={<Spiner />}>
@@ -106,5 +95,3 @@ export function RootPage() {
     </ConfigProvider>
   );
 }
-
-export default RootPage;

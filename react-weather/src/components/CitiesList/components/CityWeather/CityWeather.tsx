@@ -90,17 +90,21 @@ export function CityWeather({
             {weatherData.current.wind_direction_10m && (
               <>
                 <div className="mt-2 flex items-center text-sm">
-                  <span className="mr-2">💨</span>
+                  <span className="mr-2" title="Wind direction and speed">
+                    💨
+                  </span>
                   <span>
                     {getWindDirection(weatherData.current.wind_direction_10m)},{" "}
                     {weatherData.current.wind_speed_10m}{" "}
                     {weatherData.current_units.wind_speed_10m}
                   </span>
                 </div>
+
                 <div className="mt-2 flex items-center text-sm">
-                  <span className="mr-2">🌪️</span>
+                  <span className="mr-2" title="Wind gusts">
+                    🌪️
+                  </span>
                   <span>
-                    {getWindDirection(weatherData.current.wind_direction_10m)},{" "}
                     {weatherData.current.wind_gusts_10m}{" "}
                     {weatherData.current_units.wind_gusts_10m}
                   </span>

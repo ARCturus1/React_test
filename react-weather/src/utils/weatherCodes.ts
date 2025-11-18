@@ -7,8 +7,8 @@ export function getWeatherDescriptionByData(weatherCode: number): string {
     switch (weatherCode) {
         case 0: return 'Clear sky';
         case 1: return 'Mainly clear';
-        case 2: return 'partly cloudy';
-        case 3: return 'overcast';
+        case 2: return 'Partly cloudy';
+        case 3: return 'Overcast';
         
         case 45: return 'Fog';
         case 48: return 'Depositing rime fog';
